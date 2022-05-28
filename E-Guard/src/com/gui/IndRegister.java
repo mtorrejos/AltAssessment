@@ -9,83 +9,83 @@ public class IndRegister extends Login{
 	public IndRegister() {
 		getContentPane().removeAll();
 		setBackground(new Color(255, 244, 228));
-		setBounds(100, 100, 455, 746);
+		setBounds(100, 100, 375, 812);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setBounds(29, 195, 64, 14);
+		lblFirstName.setBounds(10, 257, 64, 14);
 		getContentPane().add(lblFirstName);
 		
 		JLabel lblMidName = new JLabel("Middle Name:");
-		lblMidName.setBounds(29, 251, 117, 14);
+		lblMidName.setBounds(10, 313, 117, 14);
 		getContentPane().add(lblMidName);
 		
 		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setBounds(29, 309, 64, 14);
+		lblLastName.setBounds(10, 371, 64, 14);
 		getContentPane().add(lblLastName);
 		
-		JTextField textField = new JTextField();
-		textField.setBounds(39, 220, 305, 20);
-		getContentPane().add(textField);
+		JTextField txtfName = new JTextField();
+		txtfName.setBounds(20, 282, 305, 20);
+		getContentPane().add(txtfName);
 		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(39, 278, 305, 20);
-		getContentPane().add(textField_1);
+		JTextField txtmName = new JTextField();
+		txtmName.setBounds(20, 338, 305, 20);
+		getContentPane().add(txtmName);
 		
-		JTextField textField_2 = new JTextField();
-		textField_2.setBounds(39, 334, 305, 20);
-		getContentPane().add(textField_2);
+		JTextField txtlName = new JTextField();
+		txtlName.setBounds(20, 396, 305, 20);
+		getContentPane().add(txtlName);
 		
 		JLabel lbluAdd = new JLabel("Complete Address:");
-		lbluAdd.setBounds(29, 365, 140, 14);
+		lbluAdd.setBounds(10, 427, 140, 14);
 		getContentPane().add(lbluAdd);
 		
-		JTextField textField_3 = new JTextField();
-		textField_3.setBounds(39, 390, 305, 20);
-		getContentPane().add(textField_3);
+		JTextField txtuAdd = new JTextField();
+		txtuAdd.setBounds(20, 452, 305, 20);
+		getContentPane().add(txtuAdd);
 		
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(29, 421, 64, 14);
+		lblUsername.setBounds(10, 483, 64, 14);
 		getContentPane().add(lblUsername);
 		
-		JTextField textField_4 = new JTextField();
-		textField_4.setBounds(39, 446, 305, 20);
-		getContentPane().add(textField_4);
+		JTextField txtuName = new JTextField();
+		txtuName.setBounds(20, 508, 305, 20);
+		getContentPane().add(txtuName);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(29, 477, 64, 14);
+		lblPassword.setBounds(10, 539, 64, 14);
 		getContentPane().add(lblPassword);
 		
 		JLabel lblConfirmPassword = new JLabel("Confirm Password:");
-		lblConfirmPassword.setBounds(29, 533, 140, 14);
+		lblConfirmPassword.setBounds(10, 595, 140, 14);
 		getContentPane().add(lblConfirmPassword);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(57, 655, 89, 23);
+		btnCancel.setBounds(38, 717, 89, 23);
 		btnCancel.addActionListener(backListener);
 		setBtnProps(btnCancel);
 		getContentPane().add(btnCancel);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(clearListener);
-		btnClear.setBounds(156, 655, 89, 23);
+		btnClear.setBounds(137, 717, 89, 23);
 		setBtnProps(btnClear);
 		getContentPane().add(btnClear);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(255, 655, 89, 23);
+		btnSubmit.setBounds(236, 717, 89, 23);
 		btnClear.addActionListener(submitListener);
 		setBtnProps(btnSubmit);
 		getContentPane().add(btnSubmit);
 		
 		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds(39, 502, 305, 20);
+		passwordField.setBounds(20, 564, 305, 20);
 		getContentPane().add(passwordField);
 		
-		JPasswordField passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(39, 558, 305, 20);
-		getContentPane().add(passwordField_1);
+		JPasswordField confirmpasswordField = new JPasswordField();
+		confirmpasswordField.setBounds(20, 620, 305, 20);
+		getContentPane().add(confirmpasswordField);
 		
 		JButton btnBack = new JButton("< Back");
 		btnBack.addActionListener(backListener);
