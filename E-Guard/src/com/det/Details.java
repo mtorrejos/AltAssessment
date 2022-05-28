@@ -1,7 +1,22 @@
 package com.det;
 
-public class Details {
-	private String fName,mName,lName,uAdd,uName,uPass;
+import java.io.*;
+import com.gui.*;
+
+public class Details extends Login{
+	private String fName,mName,lName,uAdd,uName,uPass,cNum,uEmail;
+	public String getuEmail() {
+		return uEmail;
+	}
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
+	public String getcNum() {
+		return cNum;
+	}
+	public void setcNum(String cNum) {
+		this.cNum = cNum;
+	}
 	private String uID;
 
 	public String getfName() {
@@ -46,8 +61,40 @@ public class Details {
 	public void setuID(String uID) {
 		this.uID = uID;
 	}
-	
-	public String getDetails(){
-		return getfName() + ", " + getmName() + ", " + getlName() + ", " + getuAdd() + ", " + getuName();
+	public void setInd(String path) { //order of details: fname, mname, lname, add, c#, email
+		try {
+			
+			FileWriter f = new FileWriter(path,true);
+			File file = new File(path);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while(br.readLine() != null) {
+				f.write("\n");
+			}
+			f.write(getfName()+", "+getmName()+", "+getlName()+", "+getuAdd()+", "+getuName()+", "+getcNum()+", "+getuEmail());
+			f.close();
+		} 
+		catch (IOException e) {
+			System.out.println("Couldn't write to file");
+			e.printStackTrace();
+		}
+	}
+	public void setBus(String path) {
+		
+	}
+	public void setfPass(String path) {
+		try {
+			FileWriter f = new FileWriter(path,true);
+			File file = new File(path);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while(br.readLine() != null) {
+				f.write("\n");
+			}
+			f.write(getuName()+", "+getuPass());
+			f.close();
+		} 
+		catch (IOException e) {
+			System.out.println("Couldn't write to file");
+			e.printStackTrace();
+		}
 	}
 }

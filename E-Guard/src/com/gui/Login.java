@@ -18,6 +18,7 @@ public class Login extends JFrame{
 	JPasswordField passwordField;
 	JToggleButton tglbtnShowPass;
 	JTextField txtuName;
+	String[] l = new String[3];
 	
 	public static void main(String[] args) {
 		Login gui = new Login();
@@ -157,7 +158,6 @@ public class Login extends JFrame{
 		File f=new File(path);
 		String line = "";
 		String passString = "";
-		String[] l = new String[2];
 		try {
 			passString = new String(passwordField.getPassword());
 			BufferedReader br=new BufferedReader(new FileReader(f));
