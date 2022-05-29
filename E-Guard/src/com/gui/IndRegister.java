@@ -15,8 +15,14 @@ public class IndRegister extends Login{
 		getContentPane().removeAll();
 		setBackground(new Color(255, 244, 228));
 		setBounds(100, 100, 375, 812);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+
+		ImageIcon smallpic = new ImageIcon("smalleguard.png"); //small welcome eguard pic
+	    JLabel SmallPicture = new JLabel(smallpic);
+	    add(SmallPicture);
+	    SmallPicture.setBounds(55,43,40,40);
 		
 		JLabel lblFirstName = new JLabel("First Name:");
 		lblFirstName.setBounds(10, 194, 64, 14);
@@ -113,6 +119,25 @@ public class IndRegister extends Login{
 		JLabel lbluEmail = new JLabel("Email Address");
 		lbluEmail.setBounds(10, 482, 140, 14);
 		getContentPane().add(lbluEmail);
+		
+		JLabel lblWelc = new JLabel("Welcome to E-Guard!");
+		lblWelc.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		lblWelc.setBounds(75, 45, 232, 39);
+		getContentPane().add(lblWelc);
+		
+		JLabel lblDesc1 = new JLabel("<html>In accordance with the Data Privacy Act of 2012 (DPA), its Implementing" +
+			"<br>Rules and Regulations (IRR), other issuances of the National Privacy" +
+			"<br>Commission (NPC) and other relevant laws of the Philippines, the" + 
+			"<br>personal data that will collected through this form is to be used in a clear" +
+			"<br>protocols to notify, interview, and advise close contacts to patients with" + 
+			"<br>confirmed or probable COVID-19. Rest assured that the E-Guard Online" +
+			"<br>Tracer will handle the information gathered with utmost confidentiality. <html>");
+		lblDesc1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDesc1.setForeground(UIManager.getColor("Button.darkShadow"));
+		lblDesc1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 9));
+		lblDesc1.setBounds(38, 81, 287, 102);
+		getContentPane().add(lblDesc1);
+		
 	}
 
 	ActionListener clearListener = new ActionListener() {
@@ -154,9 +179,10 @@ public class IndRegister extends Login{
 				person.setuEmail(txtuEmail.getText());
 				person.setcNum(txtcNum.getText());
 				person.setuName(txtuName.getText());
-				person.setuPass(passwordField.getPassword().toString());
-				person.setInd(pathInd);
-				person.setfPass(pathPass);
+				person.setuPass(password);
+				person.setiID();
+				person.setInd(pathComb);
+				person.setiPass(pathPass);
 				JOptionPane.showMessageDialog(null,"Success:\nAccount Created. Please Login","Success",JOptionPane.DEFAULT_OPTION);
 				dispose();
 			}

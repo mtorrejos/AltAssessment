@@ -1,15 +1,18 @@
 package com.gui;
+import com.det.*;
 
 import java.awt.*;
 import javax.swing.*;
 
 public class Homepage extends Login{
-	public Homepage() {
+	
+	public Homepage(String[] l, String date, String time) {
 		getContentPane().removeAll();
 		setBackground(new Color(255, 244, 228));
 		setLayout(null);
 		setBounds(100, 100, 375, 812);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblCode = new JLabel("UNIQUE CODE");
@@ -18,7 +21,8 @@ public class Homepage extends Login{
 		lblCode.setBounds(55, 351, 236, 32);
 		add(lblCode);
 		
-		JLabel lblActualCode = new JLabel(getUniqueID());
+		JLabel lblActualCode = new JLabel();
+		lblActualCode.setText(l[2]);
 		lblActualCode.setHorizontalAlignment(SwingConstants.CENTER);
 		lblActualCode.setFont(new Font("Segoe UI Semibold", Font.BOLD, 47));
 		lblActualCode.setBounds(55, 394, 236, 69);
@@ -48,7 +52,5 @@ public class Homepage extends Login{
 		setVisible(true);
 	}
 	
-	public String getUniqueID() {
-		return "a";
-	}
+
 }

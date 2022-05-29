@@ -4,21 +4,34 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.imageio.*;
 import javax.swing.*;
+
+import com.det.Details;
 
 public class Login extends JFrame{
 	
 	String uHome = System.getProperty("user.home");
 	String fSeparator = System.getProperty("file.separator");
-	String pathInd = uHome + fSeparator + "Individuals.csv";
-	String pathBus = uHome + fSeparator + "Businesses.csv";
+	//String pathInd = uHome + fSeparator + "Individuals.csv";
+	//String pathBus = uHome + fSeparator + "Businesses.csv";
+	String pathComb = uHome + fSeparator + "Combined.csv";
 	String pathPass = uHome + fSeparator + "Passwords.csv";
-
+	//String pathIndID = uHome + fSeparator + "Individual ID.csv";
+	//String pathBusID = uHome + fSeparator + "Business ID.csv";
+	//String pathCombID = uHome + fSeparator + "Combined ID.csv";
+	String[] l = new String[3]; //array for username, password, and unique id
+	
 	JPasswordField passwordField;
 	JToggleButton tglbtnShowPass;
 	JTextField txtuName;
-	String[] l = new String[3];
+	
 	
 	public static void main(String[] args) {
 		Login gui = new Login();
@@ -26,13 +39,30 @@ public class Login extends JFrame{
 	
 	public Login(){
 		getContentPane().removeAll();
+		setLocationRelativeTo(null);
+		setTitle("E-Guard");
 		setBackground(new Color(255, 244, 228));
 		setLayout(null);
 		setBounds(100, 100, 375, 812);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		ImageIcon iconimage= new ImageIcon("iconeguardlogo.png"); //creates an image icon
+		setIconImage(iconimage.getImage());
 		
-		add(new JLabel(new ImageIcon("E-GUARD LOGO.png"))); //i have no idea why this doesn't work
+	    
+	    ImageIcon logpic = new ImageIcon("eguardlogo.png"); //login/register picture
+	    JLabel LogPic = new JLabel(logpic);
+	    add(LogPic);
+	    LogPic.setBounds(55,38,250,250);
+		
+		JLabel label = new JLabel ("E-Guard");
+		label.setBounds(52,260,900,80);
+		label.setFont(new Font(null,Font.BOLD,65));
+		label.setForeground(Color.black);
+		add(label);
+		
+	//	add(new JLabel(new ImageIcon("E-GUARD LOGO.png"))); //i have no idea why this doesn't work
 	          	
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setBounds(21, 464, 110, 14);
@@ -76,8 +106,9 @@ public class Login extends JFrame{
 		tglbtnShowPass.addActionListener(showPass);
 		add(tglbtnShowPass);
 		
-		createFile(pathInd);
-		createFile(pathBus);
+		//createFile(pathInd);
+		//createFile(pathBus);
+		createFile(pathComb);
 		createFile(pathPass);
 		
 		setVisible(true);
@@ -89,7 +120,13 @@ public class Login extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			boolean passScan = scanFile(pathPass);
 			if(passScan) {
-				Homepage hmpage = new Homepage();
+				LocalDate loginDate = LocalDate.now();
+				LocalTime loginTime = LocalTime.now();
+				DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				String loginDateString = loginDate.format(formatDate);
+				DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+				String loginTimeString = loginTime.format(formatTime);
+				Homepage hmpage = new Homepage(l,loginDateString,loginTimeString);
 				dispose();
 			}
 			
@@ -113,6 +150,7 @@ public class Login extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
+			BusRegister busreg = new BusRegister();
 		}	
 	};
 	
@@ -157,14 +195,16 @@ public class Login extends JFrame{
 	public boolean scanFile(String path){
 		File f=new File(path);
 		String line = "";
-		String passString = "";
+		
 		try {
-			passString = new String(passwordField.getPassword());
+			String password = new String(passwordField.getPassword());
 			BufferedReader br=new BufferedReader(new FileReader(f));
 			while((line=br.readLine())!=null) {
 				l = line.split(",");
-				if(txtuName.getText().equals(l[0]) && passString.equals(l[1]))
+				String confirmPass = new String(l[1]);
+				if(txtuName.getText().equals(l[0]) && confirmPass.equals(password)) {
 					return true;
+				}
 			
 				else
 					continue;

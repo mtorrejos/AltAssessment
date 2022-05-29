@@ -1,10 +1,44 @@
 package com.det;
 
 import java.io.*;
+import java.util.Random;
+
 import com.gui.*;
 
 public class Details extends Login{
-	private String fName,mName,lName,uAdd,uName,uPass,cNum,uEmail;
+	private String fName,mName,lName,uAdd,uName,cNum,uEmail,uPass,iID; //individual details
+	private String busName,busNum,conPerson,conNum,landNum, bID;
+
+	public String getBusName() {
+		return busName;
+	}
+	public void setBusName(String busName) {
+		this.busName = busName;
+	}
+	public String getBusNum() {
+		return busNum;
+	}
+	public void setBusNum(String busNum) {
+		this.busNum = busNum;
+	}
+	public String getConPerson() {
+		return conPerson;
+	}
+	public void setConPerson(String conPerson) {
+		this.conPerson = conPerson;
+	}
+	public String getConNum() {
+		return conNum;
+	}
+	public void setConNum(String conNum) {
+		this.conNum = conNum;
+	}
+	public String getLandNum() {
+		return landNum;
+	}
+	public void setLandNum(String landNum) {
+		this.landNum = landNum;
+	}
 	public String getuEmail() {
 		return uEmail;
 	}
@@ -17,8 +51,6 @@ public class Details extends Login{
 	public void setcNum(String cNum) {
 		this.cNum = cNum;
 	}
-	private String uID;
-
 	public String getfName() {
 		return fName;
 	}
@@ -55,21 +87,62 @@ public class Details extends Login{
 	public void setuPass(String uPass) {
 		this.uPass = uPass;
 	}
-	public String getuID() {
-		return uID;
+	public void setiID() {
+		Random rand = new Random(getuName().hashCode() * getcNum().hashCode());
+		int leftLimit = 48;
+		int rightLimit = 122;
+		int targetLength = 6;
+		String generatedString = rand.ints(leftLimit, rightLimit + 1).filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+				.limit(targetLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+				.toString();
+		iID = "I-" + generatedString;
 	}
-	public void setuID(String uID) {
-		this.uID = uID;
+	
+	public String getiID() {
+		return iID;
 	}
-	public void setInd(String path) { //order of details: fname, mname, lname, add, c#, email
+	
+	public void setbID() {
+		Random rand = new Random(getBusName().hashCode() * getConNum().hashCode());
+		int leftLimit = 48;
+		int rightLimit = 122;
+		int targetLength = 6;
+		String generatedString = rand.ints(leftLimit, rightLimit + 1).filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+				.limit(targetLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+				.toString();
+		iID = "B-" + generatedString;
+	}
+	
+	public String getbID() {
+		return bID;
+	}
+	
+	public void setiPass(String path) {
+		try {
+			FileWriter f = new FileWriter(path,true);
+			File file = new File(path);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			if(br.readLine()!=null)
+				f.write("\n");
+			f.write(getuName()+","+getuPass().toString() + "," + getiID());
+			f.close();
+		} 
+		catch (IOException e) {
+			System.out.println("Couldn't write to file");
+			e.printStackTrace();
+		}
+	}
+
+	public void setInd(String path) { //order of details: fname, mname, lname, add, username, c#, email
 		try {
 			
 			FileWriter f = new FileWriter(path,true);
 			File file = new File(path);
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			while(br.readLine() != null) {
+			if(br.readLine()!=null)
 				f.write("\n");
-			}
 			f.write(getfName()+", "+getmName()+", "+getlName()+", "+getuAdd()+", "+getuName()+", "+getcNum()+", "+getuEmail());
 			f.close();
 		} 
@@ -78,18 +151,17 @@ public class Details extends Login{
 			e.printStackTrace();
 		}
 	}
-	public void setBus(String path) {
-		
-	}
-	public void setfPass(String path) {
+	
+	public void setBus(String path) { //order of details: busname, -, -, add, username, c#, email, cperson, busnum, landline
 		try {
+			
 			FileWriter f = new FileWriter(path,true);
 			File file = new File(path);
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			while(br.readLine() != null) {
+			BufferedReader br = new BufferedReader(new FileReader(file)); 
+			if(br.readLine()!=null)
 				f.write("\n");
-			}
-			f.write(getuName()+", "+getuPass());
+			f.write(getBusName()+", "+ "\t" +", "+ "\t" + ", "+getuAdd()+", "+getuName()+", "+getcNum()+", "+getuEmail() +", " + getConPerson()+
+				getBusNum() );
 			f.close();
 		} 
 		catch (IOException e) {
@@ -97,4 +169,7 @@ public class Details extends Login{
 			e.printStackTrace();
 		}
 	}
-}
+	
+
+
+}	
