@@ -5,10 +5,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.*;
+import java.time.format.*;
 
 import javax.imageio.*;
 import javax.swing.*;
@@ -23,10 +21,14 @@ public class Login extends JFrame{
 	//String pathBus = uHome + fSeparator + "Businesses.csv";
 	String pathComb = uHome + fSeparator + "Combined.csv";
 	String pathPass = uHome + fSeparator + "Passwords.csv";
+	String pathDate = uHome + fSeparator + "Dates.csv";
+	String pathIndData = uHome + fSeparator + "IndViewDatabase.csv";
+	String pathBusData = uHome + fSeparator + "BusViewDatabase.csv";
 	//String pathIndID = uHome + fSeparator + "Individual ID.csv";
 	//String pathBusID = uHome + fSeparator + "Business ID.csv";
 	//String pathCombID = uHome + fSeparator + "Combined ID.csv";
 	String[] l = new String[3]; //array for username, password, and unique id
+	String[] t = new String[4]; //array for id, date and times
 	
 	JPasswordField passwordField;
 	JToggleButton tglbtnShowPass;
@@ -110,6 +112,9 @@ public class Login extends JFrame{
 		//createFile(pathBus);
 		createFile(pathComb);
 		createFile(pathPass);
+		createFile(pathDate);
+		createFile(pathIndData);
+		createFile(pathBusData);
 		
 		setVisible(true);
 	}
@@ -123,10 +128,12 @@ public class Login extends JFrame{
 				LocalDate loginDate = LocalDate.now();
 				LocalTime loginTime = LocalTime.now();
 				DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				String loginDateString = loginDate.format(formatDate);
+				t[0] = l[2];
+				t[1] = loginDate.format(formatDate);
 				DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-				String loginTimeString = loginTime.format(formatTime);
-				Homepage hmpage = new Homepage(l,loginDateString,loginTimeString);
+				t[2] = loginTime.format(formatTime);
+				
+				Homepage hmpage = new Homepage(l,t);
 				dispose();
 			}
 			
