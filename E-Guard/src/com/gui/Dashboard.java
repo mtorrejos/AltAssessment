@@ -40,9 +40,8 @@ public class Dashboard extends Login{
 				
 			}
 			
-			catch(IOException err) {
+			catch(Exception err) {
 				err.getStackTrace();
-				System.out.print(file);
 			}
 			
 			JTable table = new JTable(data, columns);
