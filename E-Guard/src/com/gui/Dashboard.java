@@ -61,20 +61,26 @@ public class Dashboard extends Login{
 			File file = new File(pathBusData);	
 			String line = "";
 			String[] columns = {"DATE","TIME","PLACE","TYPE","TEMP","# of PEOPLE"};
-			String[][] data = {};
+			String[][] data = new String[30][6];
 			int i = 0;
 			try {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				while ((line = br.readLine()) != null) {
 					data[i] = line.split(",");
+					System.out.print(file);
 					i++;
+					
 				}
-				
 			}
 			
 			catch(Exception err) {
 				err.getStackTrace();
 			}
+			
+			
+			JTable table = new JTable(data, columns);
+			table.setBounds(10, 33, 339, 751);
+		    add(table);
 		}
 			
 		JButton btnNewButton = new JButton("< Back");
