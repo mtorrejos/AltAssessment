@@ -89,37 +89,37 @@ public class FinalProjectGUI extends JFrame implements ActionListener{
 		   }
 	}
 	
-    public static int BinarySearch(int[] ar, int item, int first, int last)
-    {
-        int mid=(first+last)/2;
-        while(first<=last)
-        {
-            if(ar[mid]==item) return mid;
-            else if(ar[mid]>item) return BinarySearch
-            (ar,item,first,mid-1);
-            else return BinarySearch(ar,item,mid+1,last);
-        }
-        return -1;
-    }
+    	public static int BinarySearch(int[] ar, int item, int first, int last) {
+		int mid=(first+last)/2;
+		while(first<=last) {
+			if(ar[mid]==item) 
+				return mid;
+			else if(ar[mid]>item) 
+				return BinarySearch(ar,item,first,mid-1);
+	    		else 
+				return BinarySearch(ar,item,mid+1,last);
+		}
+		return -1;
+   	}
     
-    public static int Reverse(int num) {
+   	public static int Reverse(int num) {
         // base condition to end recursive calls
-        if (num < 10) {
-            //System.out.println(num);
-            rev+=String.valueOf(num);
-            return 0;
-        }
+        	if (num < 10) {
+            	//System.out.println(num);
+            		rev+=String.valueOf(num);
+            		return 0;
+        	}
  
-        else {
-            // print the unit digit of the given number
-            //System.out.print(num % 10);
-            rev+=String.valueOf(num%10);
-            // calling function for remaining number other
-            // than unit digit
-            Reverse(num / 10);
-        }
-		return num;
-    }
+		else {
+		    // print the unit digit of the given number
+		    //System.out.print(num % 10);
+		    rev+=String.valueOf(num%10);
+		    // calling function for remaining number other
+		    // than unit digit
+		    Reverse(num / 10);
+		}
+			return num;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
