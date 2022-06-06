@@ -104,7 +104,7 @@ public class Details extends Login{
 	}
 	
 	public void setbID() {
-		Random rand = new Random(getBusName().hashCode() * getConNum().hashCode());
+		Random rand = new Random(getBusName().hashCode() * getcNum().hashCode());
 		int leftLimit = 48;
 		int rightLimit = 122;
 		int targetLength = 6;
@@ -143,7 +143,7 @@ public class Details extends Login{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			if(br.readLine()!=null)
 				f.write("\n");
-			f.write(getfName()+", "+getmName()+", "+getlName()+", "+getuAdd()+", "+getuName()+", "+getcNum()+", "+getuEmail());
+			f.write(getfName()+","+getmName()+","+getlName()+","+getuAdd()+","+getuName()+","+getcNum()+","+getuEmail());
 			f.close();
 		} 
 		catch (IOException e) {
@@ -160,8 +160,8 @@ public class Details extends Login{
 			BufferedReader br = new BufferedReader(new FileReader(file)); 
 			if(br.readLine()!=null)
 				f.write("\n");
-			f.write(getBusName()+", "+ "\t" +", "+ "\t" + ", "+getuAdd()+", "+getuName()+", "+getcNum()+", "+getuEmail() +", " + getConPerson()+
-				getBusNum() );
+			f.write(getBusName()+","+ "null" +","+ "null" + ","+getuAdd()+","+getuName()+","+getcNum()+","+getuEmail() +"," + getConPerson()+
+				"," + getBusNum() );
 			f.close();
 		} 
 		catch (IOException e) {

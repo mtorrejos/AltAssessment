@@ -183,7 +183,7 @@ public class BusRegister extends Login {
 				person.setBusName(txtBusName.getText());
 				person.setBusNum(txtBusNum.getText());
 				person.setConPerson(txtConPerson.getText());
-				person.setConNum(txtConNum.getText());
+				person.setcNum(txtConNum.getText());
 				person.setLandNum(txtLandNum.getText());
 				person.setuAdd(txtuAdd.getText());
 				person.setuEmail(txtEmail.getText());

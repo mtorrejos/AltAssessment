@@ -101,7 +101,7 @@ public class Homepage extends Login{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
-			Profile profile = new Profile();
+			Profile profile = new Profile(u);
 		}
 	};
 	
